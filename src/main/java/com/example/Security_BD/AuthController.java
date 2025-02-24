@@ -12,10 +12,20 @@ public class AuthController {
 
     }
 
-
     @GetMapping("/home")
     public String homePage() {
     return "home";
     }
+
+    @GetMapping ("/admin")
+    public String adminPage() {
+    return "admin";
+    }
+
+    @GetMapping ("/cliente")
+    public String clientePage() {
+    return "cliente";
+    }
+
 
 }

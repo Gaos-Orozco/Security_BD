@@ -50,13 +50,17 @@ public class SecurityConfig {
         http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/login").permitAll()
-        .requestMatchers("/home").authenticated()
+        .requestMatchers("/login/**").permitAll()
+        .requestMatchers("/home/**").authenticated()
+        .requestMatchers("/cliente/**").hasRole("CLIENTE")
+        .requestMatchers("/admin/**").hasRole("ADMIN")
         .anyRequest().authenticated()
         )
         .formLogin(form -> form
         .loginPage("/login")
-        .defaultSuccessUrl("/home",true)
+        .defaultSuccessUrl("/home", true)
+        .defaultSuccessUrl("/cliente",true)
+        .defaultSuccessUrl("/admin",true)
         .permitAll()
         );
         return http.build();
